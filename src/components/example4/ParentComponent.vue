@@ -5,19 +5,9 @@
   </div>
 </template>
 
-<script>
-
+<script setup lang="ts">
+import { provide } from 'vue';
 import ChildComponent1 from "@/components/example4/ChildComponent1.vue";
 
-export default {
-  name: "E06ParentComponent",
-  provide() {
-    return {
-      sharedMessage: 'Hello from provide'
-    };
-  },
-  components: {
-    ChildComponent1
-  }
-};
+provide('sharedMessage', 'Hello from provide');
 </script>
