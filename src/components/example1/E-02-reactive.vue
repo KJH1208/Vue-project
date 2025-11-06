@@ -5,8 +5,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 
-const firstName = ref("Juhyeon");
-const lastName = ref("Kang");
+const firstName = ref("Kyungsu");
+const lastName = ref("Lee");
 
 const fullName = computed(() => {
   return firstName.value + " " + lastName.value;
@@ -14,7 +14,7 @@ const fullName = computed(() => {
 
 onMounted(() => {
   setTimeout(() => {
-    firstName.value = "KJH";
+    firstName.value = "KSL";
   }, 2000);
 });
 </script>
