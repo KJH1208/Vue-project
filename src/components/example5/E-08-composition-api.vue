@@ -10,81 +10,65 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { ref, computed, watch, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } from 'vue';
 
-export default {
-  name: 'E08CompositionApi',
+// Props 정의
+const props = withDefaults(defineProps<{
+  title?: string;
+}>(), {
+  title: 'User Information'
+});
 
-  props: {
-    title: {
-      type: String,
-      default: 'User Information'
-    }
-  },
+// 반응형 상태 정의
+const firstName = ref('John');
+const lastName = ref('Doe');
+const greetCount = ref(0);
+const message = ref('');
 
-  setup(props) {
-    // 반응형 상태 정의
-    const firstName = ref('John');
-    const lastName = ref('Doe');
-    const greetCount = ref(0);
-    const message = ref('');
+// 계산된 속성
+const fullName = computed(() => `${firstName.value} ${lastName.value}`);
 
-    // 계산된 속성
-    const fullName = computed(() => `${firstName.value} ${lastName.value}`);
-
-    // 메서드 정의
-    const greet = () => {
-      greetCount.value++;
-      message.value = `Hello, ${fullName.value}!`;
-    };
-
-    const resetGreetCount = () => {
-      greetCount.value = 0;
-    };
-
-    // 감시자(watch) 설정
-    watch(greetCount, (newValue, oldValue) => {
-      console.log(`Greet count changed from ${oldValue} to ${newValue}`);
-      if (newValue >= 3) {
-        message.value = "That's enough greetings for now!";
-      }
-    });
-
-    // 라이프사이클 훅 정의
-    onBeforeMount(() => {
-      console.log('beforeMount hook');
-    });
-
-    onMounted(() => {
-      console.log('mounted hook');
-    });
-
-    onBeforeUpdate(() => {
-      console.log('beforeUpdate hook');
-    });
-
-    onUpdated(() => {
-      console.log('updated hook');
-    });
-
-    onBeforeUnmount(() => {
-      console.log('beforeUnmount hook');
-    });
-
-    onUnmounted(() => {
-      console.log('unmounted hook');
-    });
-
-    return {
-      firstName,
-      lastName,
-      greetCount,
-      message,
-      fullName,
-      greet,
-      resetGreetCount,
-    };
-  }
+// 메서드 정의
+const greet = () => {
+  greetCount.value++;
+  message.value = `Hello, ${fullName.value}!`;
 };
+
+const resetGreetCount = () => {
+  greetCount.value = 0;
+};
+
+// 감시자(watch) 설정
+watch(greetCount, (newValue, oldValue) => {
+  console.log(`Greet count changed from ${oldValue} to ${newValue}`);
+  if (newValue >= 3) {
+    message.value = "That's enough greetings for now!";
+  }
+});
+
+// 라이프사이클 훅 정의
+onBeforeMount(() => {
+  console.log('beforeMount hook');
+});
+
+onMounted(() => {
+  console.log('mounted hook');
+});
+
+onBeforeUpdate(() => {
+  console.log('beforeUpdate hook');
+});
+
+onUpdated(() => {
+  console.log('updated hook');
+});
+
+onBeforeUnmount(() => {
+  console.log('beforeUnmount hook');
+});
+
+onUnmounted(() => {
+  console.log('unmounted hook');
+});
 </script>
