@@ -1,13 +1,20 @@
-<!-- ChildComponent.vue -->
+<!-- ParentComponent.vue -->
 <template>
   <div>
-    <p>{{ message }}</p>
-    <button @click="$emit('custom-event', 'Hello from child')">Send Event</button>
+    <ChildComponent
+        :message="parentMessage"
+        @custom-event="handleEvent"
+    />
   </div>
 </template>
 
-<script>
-export default {
-  props: ['message']
+<script setup lang="ts">
+import { ref } from 'vue';
+import ChildComponent from './ChildComponent.vue';
+
+const parentMessage = ref('Hello from parent');
+
+const handleEvent = (payload: string) => {
+  console.log(payload);
 };
 </script>
