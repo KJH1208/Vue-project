@@ -1,4 +1,4 @@
-# vue-demo
+# vue-project
 
 ## Vue3 마이그레이션 완료! 
 
