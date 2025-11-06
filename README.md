@@ -1,51 +1,72 @@
 # vue-demo
 
-## Vue3 Migration Complete! 🎉
+## Vue3 마이그레이션 완료! 🎉
 
-This project has been successfully migrated from Vue2 to Vue3 using Composition API with `<script setup>` syntax.
-
----
-
-## 📋 Migration Summary
-
-### 🔄 Converted Components (12 files)
-
-All components have been refactored from **Options API** to **Composition API** (`<script setup lang="ts">`).
-
-#### **Example 1: Basic Concepts** (3 files)
-- `E-01-instance.vue` - Basic data binding with `ref()`
-- `E-02-instance.vue` - Computed properties and lifecycle hooks
-- `E-03-instance.vue` - Two-way binding with `v-model`
-
-#### **Example 2: Directives** (1 file)
-- `E-04-directives.vue` - Vue directives (v-if, v-for, v-show, v-bind, v-on, etc.)
-
-#### **Example 3: Component Communication** (2 files)
-- `ChildComponent.vue` - Props and emits with TypeScript types
-- `ParentComponent.vue` - Parent-child communication
-
-#### **Example 4: Provide/Inject** (3 files)
-- `ChildComponent1.vue` - Inject shared data
-- `ChildComponent2.vue` - Nested inject
-- `ParentComponent.vue` - Provide shared data
-
-#### **Example 5: API Comparison** (3 files)
-- `E-07-Options-API.vue` - Options API converted to Composition API
-- `E-08-composition-api.vue` - Composition API with `setup()` converted to `<script setup>`
-- `E-09-composition-API2.vue` - Already using `<script setup>`, added TypeScript types
-
-#### **Example 6: Reactivity System** (3 files)
-- `E-10-ref.vue` - Using `ref()` for primitive values
-- `E-11-reactive.vue` - Using `reactive()` for objects
-- `E-12-ref-component.vue` - Template refs for DOM elements
+이 프로젝트는 Vue2에서 Vue3로 성공적으로 마이그레이션되었습니다. Composition API와 `<script setup>` 문법을 사용하도록 리팩터링했습니다.
 
 ---
 
-## 🔑 Key Changes
+## 🖼️ 프로젝트 미리보기
 
-### **1. Script Block Structure**
+### 전체 화면
+![전체 화면](./screenshots/main-view.png)
 
-**Before (Vue2 Options API):**
+> 📸 스크린샷 촬영 방법: `npm run serve` 실행 후 `http://localhost:8080` 접속하여 전체 화면 캡처
+
+---
+
+## 📋 변경 내역 요약
+
+### 🔄 변환된 컴포넌트 (총 12개)
+
+모든 컴포넌트를 **Options API**에서 **Composition API** (`<script setup lang="ts">`)로 리팩터링했습니다.
+
+#### **Example 1: 기본 개념** (3개)
+- `E-01-instance.vue` - `ref()`를 사용한 기본 데이터 바인딩
+- `E-02-instance.vue` - computed 속성과 라이프사이클 훅
+- `E-03-instance.vue` - `v-model`을 이용한 양방향 바인딩
+
+![Example 1](./screenshots/example1.png)
+
+#### **Example 2: 디렉티브** (1개)
+- `E-04-directives.vue` - Vue 디렉티브 모음 (v-if, v-for, v-show, v-bind, v-on 등)
+
+![Example 2](./screenshots/example2.png)
+
+#### **Example 3: 컴포넌트 간 통신** (2개)
+- `ChildComponent.vue` - TypeScript 타입을 사용한 Props와 Emits
+- `ParentComponent.vue` - 부모-자식 컴포넌트 통신
+
+![Example 3](./screenshots/example3.png)
+
+#### **Example 4: Provide/Inject** (3개)
+- `ChildComponent1.vue` - 공유 데이터 주입받기
+- `ChildComponent2.vue` - 중첩된 inject
+- `ParentComponent.vue` - 데이터 제공하기
+
+![Example 4](./screenshots/example4.png)
+
+#### **Example 5: API 비교** (3개)
+- `E-07-Options-API.vue` - Options API를 Composition API로 변환
+- `E-08-composition-api.vue` - `setup()` 함수를 `<script setup>`으로 변환
+- `E-09-composition-API2.vue` - 이미 `<script setup>` 사용 중, TypeScript 타입 추가
+
+![Example 5](./screenshots/example5.png)
+
+#### **Example 6: 반응성 시스템** (3개)
+- `E-10-ref.vue` - 원시 값에 `ref()` 사용
+- `E-11-reactive.vue` - 객체에 `reactive()` 사용
+- `E-12-ref-component.vue` - DOM 요소 참조를 위한 template refs
+
+![Example 6](./screenshots/example6.png)
+
+---
+
+## 🔑 주요 변경사항
+
+### **1. 스크립트 구조**
+
+**변경 전 (Vue2 Options API):**
 ```vue
 <script>
 export default {
@@ -59,7 +80,7 @@ export default {
 </script>
 ```
 
-**After (Vue3 Composition API):**
+**변경 후 (Vue3 Composition API):**
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -71,23 +92,23 @@ const increment = () => { count.value++ };
 
 ---
 
-### **2. Reactivity**
+### **2. 반응형 데이터**
 
-| Feature | Vue2 | Vue3 |
-|---------|------|------|
-| Data | `data() { return {...} }` | `ref()` or `reactive()` |
-| Computed | `computed: { ... }` | `computed(() => ...)` |
-| Methods | `methods: { ... }` | `const funcName = () => {...}` |
-| Watch | `watch: { ... }` | `watch(source, callback)` |
+| 기능 | Vue2 | Vue3 |
+|------|------|------|
+| 데이터 | `data() { return {...} }` | `ref()` 또는 `reactive()` |
+| 계산된 속성 | `computed: { ... }` | `computed(() => ...)` |
+| 메서드 | `methods: { ... }` | `const funcName = () => {...}` |
+| 감시자 | `watch: { ... }` | `watch(source, callback)` |
 
 ---
 
-### **3. Lifecycle Hooks**
+### **3. 라이프사이클 훅**
 
 | Vue2 Options API | Vue3 Composition API |
 |------------------|----------------------|
-| `beforeCreate()` | `setup()` (직접 실행) |
-| `created()` | `setup()` (직접 실행) |
+| `beforeCreate()` | `setup()` (내부에서 직접 실행) |
+| `created()` | `setup()` (내부에서 직접 실행) |
 | `beforeMount()` | `onBeforeMount()` |
 | `mounted()` | `onMounted()` |
 | `beforeUpdate()` | `onBeforeUpdate()` |
@@ -99,7 +120,7 @@ const increment = () => { count.value++ };
 
 ### **4. Props & Emits**
 
-**Before:**
+**변경 전:**
 ```vue
 <script>
 export default {
@@ -113,7 +134,7 @@ export default {
 </script>
 ```
 
-**After:**
+**변경 후:**
 ```vue
 <script setup lang="ts">
 defineProps<{ message: string }>();
@@ -132,7 +153,7 @@ const sendEvent = () => {
 
 ### **5. Provide/Inject**
 
-**Before:**
+**변경 전:**
 ```vue
 <script>
 export default {
@@ -144,15 +165,15 @@ export default {
 </script>
 ```
 
-**After:**
+**변경 후:**
 ```vue
 <script setup lang="ts">
 import { provide, inject } from 'vue';
 
-// Provide
+// 데이터 제공
 provide('key', 'value');
 
-// Inject
+// 데이터 주입
 const key = inject<string>('key');
 </script>
 ```
@@ -161,7 +182,7 @@ const key = inject<string>('key');
 
 ### **6. Template Refs**
 
-**Before:**
+**변경 전:**
 ```vue
 <script>
 export default {
@@ -172,7 +193,7 @@ export default {
 </script>
 ```
 
-**After:**
+**변경 후:**
 ```vue
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
@@ -191,63 +212,86 @@ onMounted(() => {
 
 ---
 
-## ✅ Configuration Files Status
+## ✅ 설정 파일 상태
 
-All configuration files are already Vue3-compatible:
+모든 설정 파일이 Vue3와 호환됩니다:
 
-- ✅ `main.ts` - Using `createApp()` (Vue3)
-- ✅ `App.vue` - Using `defineComponent` (Vue3)
-- ✅ `package.json` - Vue 3.2.13 installed
-- ✅ `shims-vue.d.ts` - Using `DefineComponent` type
-- ✅ `tsconfig.json` - Optimized for Vue3
+- ✅ `main.ts` - `createApp()` 사용 (Vue3)
+- ✅ `App.vue` - `defineComponent` 사용 (Vue3)
+- ✅ `package.json` - Vue 3.2.13 설치됨
+- ✅ `shims-vue.d.ts` - `DefineComponent` 타입 사용
+- ✅ `tsconfig.json` - Vue3에 최적화
 
-**No additional configuration changes needed!**
+**추가 설정 변경 필요 없음!**
 
 ---
 
-## 🚀 Project Setup
+## 🚀 프로젝트 실행 방법
 
-### Install dependencies
+### 의존성 설치
 ```bash
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 개발 서버 실행 (핫 리로드 지원)
 ```bash
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 프로덕션 빌드
 ```bash
 npm run build
 ```
 
-### Lints and fixes files
+### 린트 검사 및 수정
 ```bash
 npm run lint
 ```
 
 ---
 
-## 📚 Additional Resources
+## 📸 스크린샷 폴더 구조
 
-- [Vue 3 Official Documentation](https://vuejs.org/)
-- [Composition API Guide](https://vuejs.org/guide/extras/composition-api-faq.html)
-- [Script Setup Documentation](https://vuejs.org/api/sfc-script-setup.html)
-- [Vue 3 Migration Guide](https://v3-migration.vuejs.org/)
-- [TypeScript with Vue](https://vuejs.org/guide/typescript/overview.html)
+프로젝트 루트에 `screenshots` 폴더를 만들고 다음 이미지들을 저장하세요:
+
+```
+screenshots/
+├── main-view.png       # 전체 화면 (필수)
+├── example1.png        # Example 1 섹션
+├── example2.png        # Example 2 섹션
+├── example3.png        # Example 3 섹션
+├── example4.png        # Example 4 섹션
+├── example5.png        # Example 5 섹션
+└── example6.png        # Example 6 섹션
+```
+
+### 스크린샷 촬영 팁
+1. `npm run serve` 실행
+2. 브라우저에서 `http://localhost:8080` 접속
+3. 각 섹션별로 스크린샷 촬영
+4. 이미지 파일명을 위 구조대로 저장
 
 ---
 
-## 🎯 Benefits of Vue3 Composition API
+## 📚 참고 자료
 
-1. **Better TypeScript Support** - Full type inference
-2. **Better Code Organization** - Logical concerns grouped together
-3. **Better Code Reuse** - Composable functions
-4. **Smaller Bundle Size** - Tree-shaking friendly
-5. **Better Performance** - Optimized reactivity system
+- [Vue 3 공식 문서](https://vuejs.org/)
+- [Composition API 가이드](https://vuejs.org/guide/extras/composition-api-faq.html)
+- [Script Setup 문서](https://vuejs.org/api/sfc-script-setup.html)
+- [Vue 3 마이그레이션 가이드](https://v3-migration.vuejs.org/)
+- [TypeScript와 Vue 사용하기](https://vuejs.org/guide/typescript/overview.html)
 
 ---
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 🎯 Vue3 Composition API의 장점
+
+1. **더 나은 TypeScript 지원** - 완벽한 타입 추론
+2. **더 나은 코드 구성** - 관련 로직을 함께 그룹화 가능
+3. **더 나은 코드 재사용** - Composable 함수 작성 가능
+4. **작은 번들 사이즈** - Tree-shaking 지원
+5. **향상된 성능** - 최적화된 반응성 시스템
+
+---
+
+### 추가 설정
+자세한 내용은 [Configuration Reference](https://cli.vuejs.org/config/)를 참고하세요.
