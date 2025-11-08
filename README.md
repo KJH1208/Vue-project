@@ -31,8 +31,11 @@ Composition API와 `<script setup>` 문법을 사용하도록 리팩터링했습
 **동작 화면:**
 
 ![Example 1](./screenshots/E01.png)
+*E01*
 ![Example 1](./screenshots/E02.png)
+*E02*
 ![Example 1](./screenshots/E03.png)
+*E03*
 
 <details>
 <summary>📌 주요 기능</summary>
